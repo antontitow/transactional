@@ -1,5 +1,6 @@
 package com.titov.transactionalapp.controller;
 
+import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 import com.titov.transactionalapp.service.BookService;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +23,7 @@ public class Controller {
 
 
     @PostMapping("add")
-    public BookEntity getBook(@RequestBody BookEntity book) {
+    public BookEntity getBook(@RequestBody Book book) {
         return bookService.addBook(book);
     }
 }

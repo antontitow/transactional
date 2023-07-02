@@ -6,16 +6,13 @@ import lombok.NoArgsConstructor;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
- * @created : 02.07.2023, 0:46
+ * @created : 02.07.2023, 3:33
  **/
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class Book {
-
-    private Author author;
-    private Long cost;
-    private String title;
-    private Long pageCount;
-    private String description;
+@AllArgsConstructor
+public class Author {
+    private String name;
+    private String surname;
+    private String patronymic;
 }

@@ -1,8 +1,11 @@
 package com.titov.transactionalapp.service;
 
+import com.titov.transactionalapp.mapper.AuthorToEntityMapper;
+import com.titov.transactionalapp.mapper.BookToEntityMapper;
+import com.titov.transactionalapp.model.Author;
+import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.repository.AuthorRepository;
 import com.titov.transactionalapp.repository.BooksRepository;
-import com.titov.transactionalapp.repository.entity.AuthorEntity;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -16,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Primary
 @RequiredArgsConstructor
-public class BookGetterImpl implements BookService {
+public class BookServiceImpl implements BookService {
     private final BooksRepository booksRepository;
     private final AuthorRepository authorRepository;
 
@@ -27,11 +30,11 @@ public class BookGetterImpl implements BookService {
 
     @Override
     @Transactional
-    public BookEntity addBook(BookEntity book) {
-        AuthorEntity author = book.getAuthor();
-        authorRepository.save(author);
+    public BookEntity addBook(Book book) {
+        Author author = book.getAuthor();
+        authorRepository.save(AuthorToEntityMapper.map(author));
 
-        return booksRepository.save(book);
+        return booksRepository.save(BookToEntityMapper.map(book));
     }
 
 

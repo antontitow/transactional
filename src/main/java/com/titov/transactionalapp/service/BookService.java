@@ -1,5 +1,6 @@
 package com.titov.transactionalapp.service;
 
+import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 
 /**
@@ -9,5 +10,5 @@ import com.titov.transactionalapp.repository.entity.BookEntity;
 public interface BookService {
     BookEntity getBookById(Long id);
 
-    BookEntity addBook(BookEntity book);
+    BookEntity addBook(Book book);
 }
