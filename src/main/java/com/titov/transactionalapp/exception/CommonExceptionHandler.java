@@ -4,7 +4,6 @@ import com.titov.transactionalapp.model.Response;
 import com.titov.transactionalapp.repository.entity.AbstractEntity;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,7 +20,7 @@ public class CommonExceptionHandler {
 
     @ExceptionHandler({NoSuchElementException.class, NoRecordException.class})
     @ResponseBody
-    public Response<BookEntity> handleNoRecordException(NoSuchElementException e) {
+    public Response<BookEntity> handleNoRecordException(NoRecordException e) {
         log.error("error:", e.getMessage());
 
         return new Response(new AbstractEntity("No books elements"));

@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
         BookEntity bookEntity = booksRepository.findByBookEntityId(id);
 
         if (bookEntity == null) {
-            throw new NoRecordException("No elements");
+            throw new NoRecordException();
         }
 
         return new Response<>(map(bookEntity));

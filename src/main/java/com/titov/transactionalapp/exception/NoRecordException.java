@@ -8,11 +8,7 @@ import java.util.NoSuchElementException;
  **/
 public class NoRecordException extends NoSuchElementException {
 
-    public NoRecordException(String message) {
-        super(message);
-    }
-
     public NoRecordException() {
-        super();
+        super("No elements");
     }
 }
