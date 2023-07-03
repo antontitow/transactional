@@ -1,6 +1,5 @@
 package com.titov.transactionalapp.repository.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -11,7 +10,6 @@ import javax.persistence.*;
  **/
 @Entity
 @Data
-//@Table(name = "Book")
 public class BookEntity {
     @Id
     @GeneratedValue

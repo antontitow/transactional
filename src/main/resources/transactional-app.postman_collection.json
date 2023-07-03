@@ -1,0 +1,62 @@
+{
+	"info": {
+		"_postman_id": "4391d7b6-0b31-4541-ba8c-40207cfb3305",
+		"name": "transactional-app",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "local",
+			"item": [
+				{
+					"name": "book/get/id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost/book/get/{id}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"book",
+								"get",
+								"{id}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author\": {\r\n        \"name\": \"Victor\",\r\n        \"surname\": \"Voronin\",\r\n        \"patronymic\": \"\"\r\n    },\r\n    \"cost\": 700,\r\n    \"title\": \"magic of night\",\r\n    \"pageCount\": 652,\r\n    \"description\": \"instructions for game\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/book/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"book",
+								"add"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
