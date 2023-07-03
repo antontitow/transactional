@@ -4,6 +4,7 @@ import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.model.Response;
 import com.titov.transactionalapp.service.BookService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -12,8 +13,8 @@ import org.springframework.web.bind.annotation.*;
  **/
 @RestController
 @RequestMapping("book/")
-@RequiredArgsConstructor
-public class Controller {
+@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+public class BookController {
     private final BookService bookService;
 
     @GetMapping("get/{id}")

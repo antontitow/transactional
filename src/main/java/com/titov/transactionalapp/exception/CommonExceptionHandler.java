@@ -25,4 +25,12 @@ public class CommonExceptionHandler {
 
         return new Response(new AbstractEntity("No books elements"));
     }
+
+    @ExceptionHandler(PersonAgeException.class)
+    @ResponseBody
+    public Response<String> handlePersonAgeException(PersonAgeException e) {
+        log.error("error:", e.getMessage());
+
+        return new Response("Wrong worker age");
+    }
 }
