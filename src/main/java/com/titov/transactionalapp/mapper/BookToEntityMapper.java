@@ -9,12 +9,23 @@ import com.titov.transactionalapp.repository.entity.BookEntity;
  **/
 public class BookToEntityMapper {
     public static BookEntity map(Book book) {
-        BookEntity bookEntity = new BookEntity();
-        bookEntity.setCost(bookEntity.getCost());
-        bookEntity.setTitle(book.getTitle());
-        bookEntity.setDescription(book.getDescription());
-        bookEntity.setPageCount(book.getPageCount());
+        return BookEntity
+                .builder()
+                .cost(book.getCost())
+                .title(book.getTitle())
+                .description(book.getDescription())
+                .pageCount(book.getPageCount())
+                .build();
+    }
 
-        return bookEntity;
+    public static Book map(BookEntity bookEntity) {
+        return Book
+                .builder()
+                .author(AuthorToEntityMapper.map(bookEntity.getAuthor()))
+                .cost(bookEntity.getCost())
+                .title(bookEntity.getTitle())
+                .description(bookEntity.getDescription())
+                .pageCount(bookEntity.getPageCount())
+                .build();
     }
 }

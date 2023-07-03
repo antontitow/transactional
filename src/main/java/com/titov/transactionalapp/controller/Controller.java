@@ -1,7 +1,7 @@
 package com.titov.transactionalapp.controller;
 
 import com.titov.transactionalapp.model.Book;
-import com.titov.transactionalapp.repository.entity.BookEntity;
+import com.titov.transactionalapp.model.Response;
 import com.titov.transactionalapp.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -16,14 +16,14 @@ import org.springframework.web.bind.annotation.*;
 public class Controller {
     private final BookService bookService;
 
-    @RequestMapping("get/{id}")
-    public BookEntity getBook(@PathVariable Long id) {
+    @GetMapping("get/{id}")
+    public Response<Book> getBook(@PathVariable Long id) {
         return bookService.getBookById(id);
     }
 
 
     @PostMapping("add")
-    public BookEntity getBook(@RequestBody Book book) {
+    public Response<Book> getBook(@RequestBody Book book) {
         return bookService.addBook(book);
     }
 }

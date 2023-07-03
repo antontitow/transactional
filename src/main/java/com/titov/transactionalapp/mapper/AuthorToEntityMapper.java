@@ -9,11 +9,18 @@ import com.titov.transactionalapp.repository.entity.AuthorEntity;
  **/
 public class AuthorToEntityMapper {
     public static AuthorEntity map(Author author) {
-        AuthorEntity authorEntity = new AuthorEntity();
-        authorEntity.setName(author.getName());
-        authorEntity.setSurname(author.getSurname());
-        authorEntity.setPatronymic(author.getPatronymic());
+        return AuthorEntity.builder()
+                .name(author.getName())
+                .surname(author.getSurname())
+                .patronymic(author.getPatronymic())
+                .build();
+    }
 
-        return authorEntity;
+    public static Author map(AuthorEntity authorEntity) {
+        return Author.builder()
+                .name(authorEntity.getName())
+                .surname(authorEntity.getSurname())
+                .patronymic(authorEntity.getPatronymic())
+                .build();
     }
 }

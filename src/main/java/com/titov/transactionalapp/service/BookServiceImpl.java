@@ -1,17 +1,22 @@
 package com.titov.transactionalapp.service;
 
+import com.titov.transactionalapp.exception.NoRecordException;
 import com.titov.transactionalapp.mapper.AuthorToEntityMapper;
-import com.titov.transactionalapp.mapper.BookToEntityMapper;
 import com.titov.transactionalapp.model.Author;
 import com.titov.transactionalapp.model.Book;
+import com.titov.transactionalapp.model.Response;
 import com.titov.transactionalapp.repository.AuthorRepository;
 import com.titov.transactionalapp.repository.BooksRepository;
 import com.titov.transactionalapp.repository.entity.AuthorEntity;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 import lombok.RequiredArgsConstructor;
+import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import static com.titov.transactionalapp.mapper.BookToEntityMapper.map;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
@@ -20,24 +25,34 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Primary
 @RequiredArgsConstructor
+@Slf4j
 public class BookServiceImpl implements BookService {
+
     private final BooksRepository booksRepository;
     private final AuthorRepository authorRepository;
 
+    @SneakyThrows
     @Override
-    public BookEntity getBookById(Long id) {
-        return booksRepository.findById(id).get();
+    public Response<Book> getBookById(Long id) {
+        log.info("Getting book by id {}", id);
+        BookEntity bookEntity = booksRepository.findByBookEntityId(id);
+
+        if (bookEntity == null) {
+            throw new NoRecordException("No elements");
+        }
+
+        return new Response<>(map(bookEntity));
     }
 
     @Override
     @Transactional
-    public BookEntity addBook(Book book) {
+    public Response<Book> addBook(Book book) {
         Author author = book.getAuthor();
         AuthorEntity authorEntity = authorRepository.save(AuthorToEntityMapper.map(author));
-        BookEntity bookEntity = BookToEntityMapper.map(book);
+        BookEntity bookEntity = map(book);
         bookEntity.setAuthor(authorEntity);
 
-        return booksRepository.save(bookEntity);
+        return new Response<>(map(booksRepository.save(bookEntity)));
     }
 
 
