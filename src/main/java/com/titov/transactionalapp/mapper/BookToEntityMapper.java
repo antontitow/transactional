@@ -10,7 +10,6 @@ import com.titov.transactionalapp.repository.entity.BookEntity;
 public class BookToEntityMapper {
     public static BookEntity map(Book book) {
         BookEntity bookEntity = new BookEntity();
-        bookEntity.setAuthor(AuthorToEntityMapper.map(book.getAuthor()));
         bookEntity.setCost(bookEntity.getCost());
         bookEntity.setTitle(book.getTitle());
         bookEntity.setDescription(book.getDescription());

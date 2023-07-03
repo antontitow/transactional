@@ -6,6 +6,7 @@ import com.titov.transactionalapp.model.Author;
 import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.repository.AuthorRepository;
 import com.titov.transactionalapp.repository.BooksRepository;
+import com.titov.transactionalapp.repository.entity.AuthorEntity;
 import com.titov.transactionalapp.repository.entity.BookEntity;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
@@ -32,9 +33,11 @@ public class BookServiceImpl implements BookService {
     @Transactional
     public BookEntity addBook(Book book) {
         Author author = book.getAuthor();
-        authorRepository.save(AuthorToEntityMapper.map(author));
+        AuthorEntity authorEntity = authorRepository.save(AuthorToEntityMapper.map(author));
+        BookEntity bookEntity = BookToEntityMapper.map(book);
+        bookEntity.setAuthor(authorEntity);
 
-        return booksRepository.save(BookToEntityMapper.map(book));
+        return booksRepository.save(bookEntity);
     }
 
 
