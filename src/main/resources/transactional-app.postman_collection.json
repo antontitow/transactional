@@ -29,13 +29,13 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "add book with author",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"author\": {\r\n        \"name\": \"Victor\",\r\n        \"surname\": \"Voronin\",\r\n        \"patronymic\": \"\"\r\n    },\r\n    \"cost\": 700,\r\n    \"title\": \"magic of night\",\r\n    \"pageCount\": 652,\r\n    \"description\": \"instructions for game\"\r\n}",
+							"raw": "{\r\n    \"author\": {\r\n        \"name\": \"Victor\",\r\n        \"surname\": \"Voronin\",\r\n        \"patronymic\": \"Vitalievich\"\r\n    },\r\n    \"cost\": 700,\r\n    \"title\": \"magic of night\",\r\n    \"pageCount\": 652,\r\n    \"description\": \"instructions for game\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -50,6 +50,63 @@
 							],
 							"path": [
 								"book",
+								"add"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register worker",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"age\" : \"15\",\r\n    \"gender\" : \"FEMALE\",\r\n    \"name\" : \"Tony\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/worker/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"worker",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"workerId\": 1,\r\n    \"amount\": 12.2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost/worker/order/add",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"path": [
+								"worker",
+								"order",
 								"add"
 							]
 						}
