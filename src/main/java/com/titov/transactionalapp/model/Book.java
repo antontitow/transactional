@@ -1,9 +1,12 @@
 package com.titov.transactionalapp.model;
 
+import com.titov.transactionalapp.repository.entity.OrderEntity;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
@@ -20,4 +23,5 @@ public class Book {
     private String title;
     private Long pageCount;
     private String description;
+    private List<OrderEntity> orders;
 }

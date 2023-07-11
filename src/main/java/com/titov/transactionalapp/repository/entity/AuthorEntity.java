@@ -31,4 +31,5 @@ public class AuthorEntity extends AbstractEntity {
 
     @Column
     private String patronymic;
+
 }

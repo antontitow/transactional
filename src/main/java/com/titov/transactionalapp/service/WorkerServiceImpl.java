@@ -60,4 +60,14 @@ public class WorkerServiceImpl implements WorkerService {
 
         return new Response<>(workerMapper.mapFromEntity(workerRepository.save(workerEntity)));
     }
+
+    @Override
+    public Response<WorkerRsDto> getWorker(Long id) {
+        return new Response<>(workerMapper.mapFromEntity(workerRepository.findById(id).get()));
+    }
+
+    @Override
+    public Response<List<WorkerRsDto>> getWorkers() {
+        return new Response<>(workerMapper.mapFromListEntity(workerRepository.findAll()));
+    }
 }

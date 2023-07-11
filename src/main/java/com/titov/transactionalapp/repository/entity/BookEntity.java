@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
@@ -36,4 +37,8 @@ public class BookEntity extends AbstractEntity{
 
     @Column
     private String description;
+
+    @Column
+    @ManyToMany
+    private List<OrderEntity> orders;
 }

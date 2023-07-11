@@ -7,12 +7,10 @@ import com.titov.transactionalapp.model.dto.worker.WorkerRsDto;
 import com.titov.transactionalapp.service.WorkerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * @autor : Anton Titov {@literal antontitow@bk.ru}
@@ -32,5 +30,15 @@ public class WorkerController {
     @PostMapping("order/add")
     public Response<WorkerRsDto> addOrder(@RequestBody OrderRqDto orderRqDto) {
         return workerService.addOrderToWorker(orderRqDto);
+    }
+
+    @GetMapping("get/{id}")
+    public Response<WorkerRsDto> getWorker(@PathVariable Long id){
+        return workerService.getWorker(id);
+    }
+
+    @GetMapping("get/all")
+    public Response<List<WorkerRsDto>> getAllWorkers(){
+        return workerService.getWorkers();
     }
 }

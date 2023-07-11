@@ -15,6 +15,7 @@ public class BookToEntityMapper {
                 .title(book.getTitle())
                 .description(book.getDescription())
                 .pageCount(book.getPageCount())
+                .orders(book.getOrders())
                 .build();
     }
 
@@ -26,6 +27,7 @@ public class BookToEntityMapper {
                 .title(bookEntity.getTitle())
                 .description(bookEntity.getDescription())
                 .pageCount(bookEntity.getPageCount())
+                .orders(bookEntity.getOrders())
                 .build();
     }
 }

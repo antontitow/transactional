@@ -24,6 +24,7 @@ public class WorkerEntity {
 
     @Column
     @OneToMany
+    @JoinColumn(name = "order_id")
     private List<OrderEntity> orders;
 
     @Column

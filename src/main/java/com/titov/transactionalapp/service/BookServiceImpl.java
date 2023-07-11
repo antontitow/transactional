@@ -2,19 +2,25 @@ package com.titov.transactionalapp.service;
 
 import com.titov.transactionalapp.exception.NoRecordException;
 import com.titov.transactionalapp.mapper.AuthorToEntityMapper;
+import com.titov.transactionalapp.mapper.BookToEntityMapper;
 import com.titov.transactionalapp.model.Author;
 import com.titov.transactionalapp.model.Book;
 import com.titov.transactionalapp.model.Response;
 import com.titov.transactionalapp.repository.AuthorRepository;
 import com.titov.transactionalapp.repository.BooksRepository;
+import com.titov.transactionalapp.repository.OrderRepository;
 import com.titov.transactionalapp.repository.entity.AuthorEntity;
 import com.titov.transactionalapp.repository.entity.BookEntity;
+import com.titov.transactionalapp.repository.entity.OrderEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.titov.transactionalapp.mapper.BookToEntityMapper.map;
 
@@ -30,6 +36,7 @@ public class BookServiceImpl implements BookService {
 
     private final BooksRepository booksRepository;
     private final AuthorRepository authorRepository;
+    private final OrderRepository orderRepository;
 
     @SneakyThrows
     @Override
@@ -49,6 +56,10 @@ public class BookServiceImpl implements BookService {
     public Response<Book> addBook(Book book) {
         Author author = book.getAuthor();
         AuthorEntity authorEntity = authorRepository.save(AuthorToEntityMapper.map(author));
+
+        List<OrderEntity> orderEntityList = book.getOrders();
+        orderRepository.saveAll(orderEntityList);
+
         BookEntity bookEntity = map(book);
         bookEntity.setAuthor(authorEntity);
 
